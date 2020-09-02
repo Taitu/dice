@@ -26,15 +26,14 @@ wss.on('connection', function connection(ws) {
 
   ws.on('message', function incoming(data) {
     wss.clients.forEach(function each(client) {
-      console.log(client.readyState, WebSocket.OPEN)
       const socket = new WebSocket('wss://www.bitdice.me/socket/websocket?vsn=2.0.0');
 
       socket.addEventListener('open', () => {
-        console.log('ws connected');
+        console.log('external ws connected');
         socket.send(JSON.stringify(['3', '3', 'bets:lobby', 'phx_join', {}]));
       });
       socket.addEventListener('error', (e) => {
-        console.log('ws error: ', e);
+        console.log('external ws error: ', e);
       });
       socket.onmessage = (e) => {
         const message = JSON.parse(e.data);
@@ -44,7 +43,7 @@ wss.on('connection', function connection(ws) {
         }
       };
       socket.onclose = () => {
-        console.log('ws closing');
+        console.log('external ws closing');
       };
     });
   });
