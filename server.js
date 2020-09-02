@@ -93,7 +93,7 @@ function generateBets() {
     },
     date: Math.round(+new Date() / 1000),
     game: 1000,
-    id: 7063479764,
+    id: Math.floor(Math.random() * 10000000000),
     profit: -0.00000285153362484639,
     wagered: 7.984294149569893e-13,
   }
